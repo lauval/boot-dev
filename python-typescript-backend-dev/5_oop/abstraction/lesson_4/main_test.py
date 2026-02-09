@@ -30,7 +30,7 @@ submit_cases = run_cases + [
 
 def test(human_args, methods, expected_output):
     print("---------------------------------")
-    print(f"Starting values:")
+    print("Starting values:")
     human = Human(*human_args)
     print(f" * x: {human_args[0]}")
     print(f" * y: {human_args[1]}")

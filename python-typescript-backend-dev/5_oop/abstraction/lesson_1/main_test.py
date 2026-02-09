@@ -17,7 +17,7 @@ submit_cases = run_cases + [
 
 def test(pos_x, pos_y, speed, move_direction, expected_output_x, expected_output_y):
     print("---------------------------------")
-    print(f"Inputs:")
+    print("Inputs:")
     print(f" * pos_x: {pos_x}")
     print(f" * pos_y: {pos_y}")
     print(f" * speed: {speed}")
