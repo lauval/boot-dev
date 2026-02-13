@@ -23,11 +23,11 @@ class BatteringRam(Siege):
         super().__init__(max_speed, efficiency)
         self.load_weight = load_weight
         self.bed_area = bed_area
-        self.depth = 2 # metres
+        self.depth = 2  # metres
 
     def get_trip_cost(self, distance, food_price):
-        trip_cost = super().get_trip_cost(distance, food_price) 
-        
+        trip_cost = super().get_trip_cost(distance, food_price)
+
         cost_of_food = self.load_weight * 0.01
 
         return trip_cost + cost_of_food

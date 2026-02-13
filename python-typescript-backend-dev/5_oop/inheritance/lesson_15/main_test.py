@@ -27,7 +27,7 @@ def test(vehicle, distance, food_price, expected_cost, expected_cargo_volume):
         print(f"Expected Cargo Volume: {expected_cargo_volume}")
         print(f"Actual Cargo Volume:   {actual_cargo_volume}")
         print("")
-        print(f"Inputs:")
+        print("Inputs:")
         print(f" * Distance: {distance} km")
         print(f" * Price: {food_price} per food")
         print(f"Expected Trip Cost: {expected_cost} ")

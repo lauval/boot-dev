@@ -7,7 +7,7 @@ class Unit:
     def in_area(self, x_1, y_1, x_2, y_2):
         within_x_bounds = (self.pos_x <= x_2) & (self.pos_x >= x_1)
         within_y_bounds = (self.pos_y <= y_2) & (self.pos_y >= y_1)
-        
+
         return within_x_bounds & within_y_bounds
 
 

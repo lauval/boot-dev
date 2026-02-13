@@ -35,7 +35,7 @@ submit_cases = run_cases + [
 
 def test(wizard, archer, actions, expected_result, expected_err=None):
     print("---------------------------------")
-    print(f"Inputs:")
+    print("Inputs:")
     print(f" * Wizard: {wizard.get_name()}, HP: {wizard.get_health()}")
     print(f" * Archer: {archer.get_name()}, HP: {archer.get_health()}")
     print(f"Actions: {actions}")

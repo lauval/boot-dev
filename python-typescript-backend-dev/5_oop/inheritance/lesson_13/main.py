@@ -16,8 +16,8 @@ def main():
     for dragon in dragons:
         remaining_dragons = dragons.copy()
         remaining_dragons.remove(dragon)
-        
-        dragon.breathe_fire(3,3, remaining_dragons)
+
+        dragon.breathe_fire(3, 3, remaining_dragons)
 
 
 # don't touch below this line

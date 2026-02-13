@@ -32,14 +32,14 @@ class Wizard(Hero):
     def __init__(self, name, health, mana):
         super().__init__(name, health)
         self.__mana = mana
-    
+
     def use_mana(self, amount):
         self.__mana -= amount
 
     def cast(self, target):
         if self.__mana <= 25:
             raise Exception("not enough mana")
-        
+
         else:
             self.__mana -= 25
             target.take_damage(25)
