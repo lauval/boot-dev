@@ -13,6 +13,10 @@ def main():
     # initialise the pygame instance
     pygame.init()
 
+    clock = pygame.time.Clock()  # to set a refresh rate (see end of game loop below)
+
+    dt = 0
+
     # define screen params
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
@@ -31,6 +35,9 @@ def main():
 
         pygame.display.flip()  # refresh the screen
 
+        dt = clock.tick(60) / 1000 # clock.tick() returns the time in milliseconds since it was last called
+
+        print(dt)
 
 if __name__ == "__main__":
     main()
