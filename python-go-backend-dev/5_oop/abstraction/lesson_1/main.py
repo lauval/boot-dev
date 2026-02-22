@@ -13,7 +13,7 @@ get_position(): Returns the x position and y position as a tuple."""
 
 
 class Human:
-    def __init__(self, pos_x, pos_y, speed):
+    def __init__(self, pos_x, pos_y, speed) -> None:
         self.__pos_x = pos_x
         self.__pos_y = pos_y
         self.__speed = speed
