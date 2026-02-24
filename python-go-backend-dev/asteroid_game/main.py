@@ -5,11 +5,16 @@ from player import Player
 
 VERSION = pygame.ver
 
-
 def main():
     print(f"Starting Asteroids with pygame version: {VERSION}")
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
+
+    drawable = pygame.sprite.Group()
+    updatable = pygame.sprite.Group()
+
+    # containers
+    Player.containers = (updatable, drawable)
 
     # initialise the pygame instance
     pygame.init()
@@ -37,11 +42,14 @@ def main():
 
         screen.fill("black")
 
-        # update player
-        player.update(dt)
+        # bulk update for all "updatable" objects
+        updatable.update(dt)
 
-        # draw player to the screen
-        player.draw(screen)
+        # drawing objects to the screen requires a specific type of sprite (sprite.image)
+        # our sprites need to be drawn procedurally, therefore we need an additional `for` loop to handle rendering
+        for drawable_object in drawable:
+            # render drawable objects 
+            drawable_object.draw(screen)
 
         # refresh the screen
         pygame.display.flip()
