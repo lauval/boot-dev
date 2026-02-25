@@ -1,9 +1,14 @@
 import pygame  # game engine
-from logger import log_state  # for automated boot dev testing
-from constants import SCREEN_HEIGHT, SCREEN_WIDTH  # dimensions
+import sys
+from logger import log_state, log_event  # for automated boot dev testing
+from constants import SCREEN_HEIGHT, SCREEN_WIDTH 
 from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
+from shot import Shot
 
 VERSION = pygame.ver
+
 
 def main():
     print(f"Starting Asteroids with pygame version: {VERSION}")
@@ -12,9 +17,15 @@ def main():
 
     drawable = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+    shots     = pygame.sprite.Group()
 
     # containers
     Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
+    Shot.containers = (shots, updatable, drawable)
+
 
     # initialise the pygame instance
     pygame.init()
@@ -32,6 +43,9 @@ def main():
     # initialise player
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    # initialise asteroid field
+    AsteroidField()
+
     # run the game loop
     while run_game:
         log_state()
@@ -45,10 +59,24 @@ def main():
         # bulk update for all "updatable" objects
         updatable.update(dt)
 
+        for asteroid in asteroids:
+            if player.collides_with(asteroid):
+                log_event("player_hit")
+                print("Game over!")
+                sys.exit()
+
+        # check for collisions between shots and 
+        for asteroid in asteroids:
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    log_event("asteroid_shot")
+                    shot.kill()
+                    asteroid.split()
+
         # drawing objects to the screen requires a specific type of sprite (sprite.image)
         # our sprites need to be drawn procedurally, therefore we need an additional `for` loop to handle rendering
         for drawable_object in drawable:
-            # render drawable objects 
+            # render drawable objects
             drawable_object.draw(screen)
 
         # refresh the screen
